@@ -1,0 +1,14 @@
+{
+    "app-title": "Angular 8 User Management Application",
+    "user-grid": {
+        "filter-text": "Filter",
+        "add-user": "Add User",
+        "cancel": "Cancel",
+        "id" : "ID",
+        "name" : "NAME",
+        "address" : "ADDRESS",
+        "contact" : "CONTACT",
+        "deleted" : "DELETED",
+        "edit" : "EDIT"
+    }
+}
