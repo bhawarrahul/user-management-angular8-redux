@@ -54,7 +54,7 @@
         {{'user-grid.deleted' | translate}}
       </mat-header-cell>
       <mat-cell *matCellDef="let row">
-        {{ row.deleted }}
+        {{ row.deleted ? 'YES' : 'NO' }}
       </mat-cell>
     </ng-container>
 
@@ -64,6 +64,15 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row" (click)="editButton(row)">
         <i class="fa fa-pencil pt-2 cursor-pointer" aria-hidden="true"></i>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{'user-grid.delete' | translate}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" (click)="deleteButton(row)">
+        <i class="fa fa-trash" aria-hidden="true"></i>
       </mat-cell>
     </ng-container>
 

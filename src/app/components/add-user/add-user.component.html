@@ -17,7 +17,13 @@
       </mat-form-field>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" [disabled]="!userForm.valid">{{'user-grid.add-user' | translate}}</button>
-    <button type="button" mat-raised-button class="pl-4" color="warn" (click)="onCancel()">{{'user-grid.cancel' | translate}}</button>
+    <div class="row">
+      <div class="pr-4 pl-3">
+        <button mat-raised-button color="primary" [disabled]="!userForm.valid">{{ (isEdituser ? 'user-grid.edit-user' : 'user-grid.add-user') | translate}}</button>
+      </div>
+      <div>
+        <button type="button" mat-raised-button class="pl-4" color="warn" (click)="onCancel()">{{'user-grid.cancel' | translate}}</button>
+      </div>
+    </div>
   </mat-card-actions>
 </form>

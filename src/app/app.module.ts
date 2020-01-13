@@ -48,6 +48,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { addUserReducer } from './state/reducers/user-reducers';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -55,7 +56,8 @@ import { addUserReducer } from './state/reducers/user-reducers';
   declarations: [
     AppComponent,
     AddUserComponent,
-    UserListComponent
+    UserListComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     MatAutocompleteModule,
@@ -109,7 +111,7 @@ import { addUserReducer } from './state/reducers/user-reducers';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddUserComponent]
+  entryComponents: [AddUserComponent,ConfirmDialogComponent]
 })
 export class AppModule { }
 
