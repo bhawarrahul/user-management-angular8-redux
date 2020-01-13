@@ -1,5 +1,5 @@
-import { User } from '../../components/models/User';
+import { User } from "../../components/models/User";
 export interface UserAppState {
-    readonly user: User[];
-    readonly editUser: User;
-  }
+  readonly user: User[];
+  readonly editUser: User;
+}
