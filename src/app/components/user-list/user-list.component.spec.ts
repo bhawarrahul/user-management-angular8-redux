@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule, By } from "@angular/platform-browser";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AngularFontAwesomeModule } from "angular-font-awesome";
@@ -15,7 +15,8 @@ import {
   MatTableModule,
   MatFormFieldModule,
   MatDialogRef,
-  MAT_DIALOG_DATA
+  MAT_DIALOG_DATA,
+  MatTable
 } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UserListComponent } from "./user-list.component";
@@ -90,5 +91,9 @@ describe("UserListComponent", () => {
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+  it("should create mat-table component ", () => {
+    const node = debugElement.childNodes[1]['childNodes'][0];
+    expect(node.name).toEqual('mat-table');
   });
 });

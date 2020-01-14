@@ -29,12 +29,15 @@ import {
 } from "@ngx-translate/core";
 import { HttpLoaderFactory } from "src/app/app.module";
 import { Store } from "@ngrx/store";
+import { DebugElement } from '@angular/core';
 
 describe("AddUserComponent", () => {
   let component: AddUserComponent;
   let fixture: ComponentFixture<AddUserComponent>;
   let translate: TranslateService;
   const testStore = jasmine.createSpyObj("Store", ["select"]);
+  let debugElement: DebugElement;
+  let element: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -78,9 +81,15 @@ describe("AddUserComponent", () => {
     fixture = TestBed.createComponent(AddUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    debugElement = fixture.debugElement;
+    element = debugElement.nativeElement;
   });
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+  it("should create add user Form element", () => {
+    const node = debugElement.childNodes[0];
+    expect(node['name']).toEqual('form');
   });
 });
