@@ -86,12 +86,14 @@ export class UserListComponent implements OnInit {
     this.getUsers();
   }
   getUsers() {
+    let userList = [];
     this.userService.getAPIUser().subscribe(res => {
       res.forEach(childObj => {
-        USER_LIST.push(childObj);
+        childObj.id = childObj["userId"];
+        userList.push(childObj);
       });
-      this.dataSource.data = USER_LIST;
-      this.paginator.length = USER_LIST.length;
+      this.dataSource.data = userList;
+      this.paginator.length = userList.length;
     });
   }
   createUsers(user: User) {
@@ -148,12 +150,16 @@ export class UserListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.action == "YES") {
-        var indexNumber = USER_LIST.indexOf(element);
-        if (indexNumber != -1) {
-          USER_LIST.splice(indexNumber, 1);
-          this.dataSource.data = USER_LIST;
-          this.paginator.length = USER_LIST.length;
-        }
+        // var indexNumber = USER_LIST.indexOf(element);
+        // if (indexNumber != -1) {
+        //   USER_LIST.splice(indexNumber, 1);
+        //   this.dataSource.data = USER_LIST;
+        //   this.paginator.length = USER_LIST.length;
+        // }
+        this.userService.deleteUser(element.userId).subscribe(res => {
+          console.log(res);
+          this.getUsers();
+        });
       }
     });
   }
