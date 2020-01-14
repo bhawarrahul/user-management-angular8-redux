@@ -30,11 +30,14 @@ import { Store } from "@ngrx/store";
 import { provideMockStore, MockStore } from "@ngrx/store/testing";
 import { UserAppState } from "src/app/state/action/user.app.state";
 import { User } from "../models/User";
+import { DebugElement } from '@angular/core';
 
 describe("UserListComponent", () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
   let translate: TranslateService;
+  let debugElement: DebugElement;
+  let element: HTMLElement;
 
   let store: MockStore<{ user: User[] }>;
   const initialState = { user: User };
@@ -81,6 +84,8 @@ describe("UserListComponent", () => {
     fixture = TestBed.createComponent(UserListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    debugElement = fixture.debugElement;
+    element = debugElement.nativeElement;
   });
 
   it("should create", () => {

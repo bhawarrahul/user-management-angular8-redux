@@ -19,6 +19,7 @@ import { UserAppState } from "src/app/state/action/user.app.state";
 import { Store } from "@ngrx/store";
 import { AddUserComponent } from "../add-user/add-user.component";
 import { ConfirmDialogComponent } from "../confirm-dialog/confirm-dialog.component";
+import { UserServiceService } from "../user-service.service";
 
 @Component({
   selector: "app-user-list",
@@ -43,7 +44,8 @@ export class UserListComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private store: Store<UserAppState>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserServiceService
   ) {
     translate.setDefaultLang(TRANSLATE_DEFAULT_LANG);
     this.store.select("user").subscribe(data => {
@@ -53,7 +55,8 @@ export class UserListComponent implements OnInit {
         var actionType = action.type;
         if (actionType == ADD_USER) {
           if (USER_LIST.indexOf(userData) < 0) {
-            USER_LIST.push(userData);
+            // USER_LIST.push(userData);
+            this.createUsers(userData);
           }
         } else if (actionType == EDIT_UER) {
           USER_LIST.forEach(childObj => {
@@ -80,6 +83,29 @@ export class UserListComponent implements OnInit {
     this.dataSource = new MatTableDataSource();
     this.dataSource.data = USER_LIST;
     this.paginator.length = USER_LIST.length;
+    this.getUsers();
+  }
+  getUsers() {
+    this.userService.getAPIUser().subscribe(res => {
+      res.forEach(childObj => {
+        USER_LIST.push(childObj);
+      });
+      this.dataSource.data = USER_LIST;
+      this.paginator.length = USER_LIST.length;
+    });
+  }
+  createUsers(user: User) {
+    this.userService
+      .createUser({
+        userId: user.id,
+        name: user.name,
+        address: user.address,
+        contact: user.contact,
+        deleted: user.deleted
+      })
+      .subscribe(res => {
+        this.getUsers();
+      });
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();

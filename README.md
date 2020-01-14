@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+##Project Details
+1) Angular 8.
+2) Basic Unit test cases to check component created or not.
+3) Used static data to hadle ADD, EDIT, DELETE operation on users.
+4) Used Redux Store to store actions like ADD, EDIT.

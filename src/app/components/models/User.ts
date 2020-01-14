@@ -13,3 +13,10 @@ export class User {
     this.deleted = deleted;
   }
 }
+export class Users {
+  userId: string;
+  name?: string;
+  address?: string;
+  contact?: string;
+  deleted?: boolean = false;
+}
